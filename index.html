@@ -487,6 +487,24 @@
       transition: transform 0.4s ease;
     }
     .media-card:hover .media-card-visual img { transform: scale(1.04); }
+    .media-card-visual.media-empty {
+      background: linear-gradient(145deg, var(--linen), var(--sand));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .media-card-visual.media-empty img { display: none; }
+    .media-card-visual.media-empty::after {
+      content: attr(data-placeholder);
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--bark);
+      opacity: 0.65;
+      text-align: center;
+      font-weight: 600;
+    }
 
     /* Video thumbnail link */
     .video-thumb-link {
@@ -1630,6 +1648,40 @@
     <div class="footer-copy">© 2026 Hannah Capps · Hot Springs, AR</div>
   </footer>
 
-
+  <script>
+    (function () {
+      function placeholderText(img) {
+        var card = img.closest('.media-card');
+        if (card) {
+          var label = card.querySelector('.media-card-label .label-text');
+          if (label && label.textContent.trim()) return label.textContent.trim();
+        }
+        return img.alt && img.alt.trim() ? img.alt.trim() : 'Photo coming soon';
+      }
+      function markBroken(img) {
+        var visual = img.closest('.media-card-visual');
+        if (visual) {
+          visual.classList.add('media-empty');
+          visual.setAttribute('data-placeholder', placeholderText(img));
+          return;
+        }
+        if (img.classList.contains('about-photo')) {
+          var wrap = img.parentElement;
+          if (!wrap) return;
+          var ph = document.createElement('div');
+          ph.className = 'about-img-placeholder';
+          ph.innerHTML = '<span class="img-icon">\u{1F4F7}</span><p>' + (img.alt || 'Portrait') + '</p>';
+          wrap.replaceChild(ph, img);
+        }
+      }
+      document.querySelectorAll('img').forEach(function (img) {
+        if (img.complete) {
+          if (img.naturalWidth === 0) markBroken(img);
+        } else {
+          img.addEventListener('error', function () { markBroken(img); });
+        }
+      });
+    })();
+  </script>
 
 </body></html>
