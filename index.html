@@ -1,0 +1,1635 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hannah Capps | UGC Creator + Photographer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #FAF7F2;
+      --warm-white: #F2E8DF;
+      --linen:      #F2E8DF;
+      --sand:       #E8D5C4;
+      --mocha:      #D4A9A1;
+      --taupe:      #C9B99A;
+      --bark:       #7A6E65;
+      --espresso:   #3A3530;
+      --accent:     #C4AA82;
+      --sage:       #B8C4BB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--espresso);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 3rem;
+      background: rgba(250, 247, 242, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212, 169, 161, 0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--espresso);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      display: block;
+      margin-top: -2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--espresso); }
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      background: var(--espresso);
+      color: var(--cream) !important;
+      border-radius: 3px;
+      font-size: 0.72rem !important;
+    }
+    .nav-cta:hover { background: var(--bark); opacity: 1; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 5.5rem 2rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mocha);
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--espresso);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+    .section-intro {
+      max-width: 540px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      color: var(--bark);
+      font-size: 0.93rem;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background-color: var(--espresso);
+      color: var(--cream);
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background-color: #2C2520; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      border: 1.5px solid var(--mocha);
+      color: var(--bark);
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .btn-outline:hover { background-color: var(--linen); transform: translateY(-1px); }
+    .btn-light {
+      display: inline-block;
+      padding: 0.95rem 2.5rem;
+      background-color: var(--cream);
+      color: var(--espresso);
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-light:hover { background: white; transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--linen) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,169,161,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,169,161,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 700px; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mocha);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(212,169,161,0.4);
+      border-radius: 50px;
+      background: rgba(212,169,161,0.06);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--espresso);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--mocha);
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--bark);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.9;
+      font-weight: 300;
+    }
+    .hero-cta-wrap {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .hero-scroll {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+      transition: color 0.2s;
+    }
+    .hero-scroll:hover { color: var(--bark); }
+    .hero-scroll-line {
+      width: 30px; height: 1px;
+      background: var(--sand);
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--espresso);
+      padding: 1.5rem 2rem;
+    }
+    .stats-bar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(212,169,161,0.75);
+      font-weight: 500;
+    }
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+      align-self: stretch;
+      justify-self: center;
+    }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--warm-white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-image-wrap { position: relative; flex-shrink: 0; }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+      display: block;
+    }
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, var(--linen), var(--sand));
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--taupe);
+    }
+    .about-img-placeholder .img-icon { font-size: 2rem; opacity: 0.4; }
+    .about-img-placeholder p { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+    .about-badge {
+      position: absolute;
+      bottom: -1.25rem;
+      right: -1.25rem;
+      background: var(--espresso);
+      color: var(--cream);
+      padding: 1.1rem 1.4rem;
+      border-radius: 4px;
+      text-align: center;
+      min-width: 120px;
+    }
+    .about-badge .b-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      display: block;
+      line-height: 1;
+      color: var(--mocha);
+    }
+    .about-badge .b-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-top: 0.3rem;
+      display: block;
+      line-height: 1.4;
+    }
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--espresso);
+      margin-bottom: 1.25rem;
+    }
+    .about-content h2 em { font-style: italic; color: var(--accent); }
+    .about-content p {
+      color: var(--bark);
+      font-size: 0.93rem;
+      font-weight: 300;
+      line-height: 1.9;
+      margin-bottom: 1.1rem;
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .tag {
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--sand);
+      border-radius: 2px;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bark);
+      background: var(--cream);
+    }
+
+    /* ─── CONTENT TYPES ─── */
+    .content-types { background: var(--cream); }
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .type-card {
+      background: var(--warm-white);
+      border-radius: 4px;
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--sand);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .type-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(58,53,48,0.07); }
+    .type-icon {
+      width: 40px; height: 40px;
+      background: var(--linen);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .type-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+    .type-card p {
+      font-size: 0.85rem;
+      color: var(--bark);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ─── SHARED MEDIA CARD STYLE (photos + videos) ─── */
+    .media-section { background: var(--warm-white); }
+    .media-section.alt { background: var(--cream); }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .video-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .travel-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .media-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--sand);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .media-section.alt .media-card { background: var(--warm-white); }
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(58,53,48,0.1);
+    }
+
+    .media-card-label {
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--sand);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .media-card-label .label-icon { font-size: 0.72rem; line-height: 1; }
+    .media-card-label .label-text {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--bark);
+    }
+
+    .media-card-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--linen);
+      flex: 1;
+    }
+    .media-card-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .media-card:hover .media-card-visual img { transform: scale(1.04); }
+
+    /* Video thumbnail link */
+    .video-thumb-link {
+      display: block;
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+    }
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(58,53,48,0.65) 0%, rgba(58,53,48,0.1) 60%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: background 0.25s;
+    }
+    .video-thumb-link:hover .video-thumb-overlay {
+      background: linear-gradient(to top, rgba(58,53,48,0.75) 0%, rgba(58,53,48,0.25) 60%);
+    }
+    .video-thumb-play {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--espresso);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      padding-left: 4px;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    .video-thumb-link:hover .video-thumb-play {
+      transform: scale(1.1);
+      background: white;
+    }
+    .video-thumb-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: linear-gradient(145deg, var(--linen), var(--sand));
+      color: var(--bark);
+      padding: 1.5rem;
+      text-align: center;
+      min-height: 200px;
+    }
+    .video-play-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(58,53,48,0.12);
+      border: 1.5px solid var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-play-btn::after {
+      content: '';
+      border-style: solid;
+      border-width: 7px 0 7px 13px;
+      border-color: transparent transparent transparent var(--taupe);
+      margin-left: 3px;
+    }
+    .video-placeholder-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      line-height: 1.5;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-it-works { background: var(--espresso); }
+    .how-it-works .section-eyebrow { color: var(--mocha); }
+    .how-it-works .section-title { color: var(--cream); }
+    .how-it-works .section-title em { color: var(--mocha); }
+    .how-it-works .section-intro { color: rgba(250,247,242,0.6); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: calc(16.66% + 1rem);
+      right: calc(16.66% + 1rem);
+      height: 1px;
+      background: rgba(212,169,161,0.2);
+      z-index: 0;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,169,161,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      background: rgba(212,169,161,0.08);
+    }
+    .step-num span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--mocha);
+    }
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.65rem;
+    }
+    .step p {
+      font-size: 0.87rem;
+      color: rgba(250,247,242,0.6);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ─── NICHES ─── */
+    .niches { background: var(--linen); }
+    .niches-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+    }
+    .niche-pill {
+      padding: 0.65rem 1.5rem;
+      border: 1px solid var(--sand);
+      border-radius: 50px;
+      color: var(--bark);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      font-weight: 400;
+      background: var(--cream);
+      transition: all 0.2s;
+    }
+    .niche-pill:hover {
+      background: var(--warm-white);
+      border-color: var(--mocha);
+      color: var(--espresso);
+    }
+
+    /* ─── WHY HANNAH ─── */
+    .why { background: var(--warm-white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .why-item {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 2rem 1.75rem;
+      text-align: center;
+    }
+    .why-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--mocha);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .why-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--espresso);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .why-item p {
+      font-size: 0.85rem;
+      color: var(--bark);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ─── BRAND DETAILS ─── */
+    .brand-details { background: var(--cream); }
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .detail-card {
+      background: var(--warm-white);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .detail-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .detail-card h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .detail-card p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--espresso);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .detail-card small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--bark);
+      font-weight: 300;
+      margin-top: 0.3rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ─── PACKAGES ─── */
+    .packages { background: var(--linen); }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .package-card {
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 2.25rem 2rem;
+      background: var(--cream);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .package-card:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(58,53,48,0.08); }
+    .package-card.featured {
+      background: var(--espresso);
+      border-color: var(--espresso);
+      position: relative;
+    }
+    .featured-badge {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--mocha);
+      color: var(--cream);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .package-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 0.2rem;
+    }
+    .package-card.featured .package-name { color: var(--cream); }
+    .package-price {
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+    .package-price-note {
+      font-size: 0.73rem;
+      color: var(--taupe);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    .package-card.featured .package-price-note { color: rgba(250,247,242,0.45); }
+    .package-divider { height: 1px; background: var(--sand); margin-bottom: 1.5rem; }
+    .package-card.featured .package-divider { background: rgba(255,255,255,0.1); }
+    .package-includes { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .package-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--bark);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .package-card.featured .package-includes li { color: rgba(250,247,242,0.75); }
+    .check {
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .package-card.featured .check { background: rgba(255,255,255,0.12); }
+    .check::after { content: '✓'; font-size: 0.52rem; color: var(--accent); font-weight: 700; }
+    .package-card.featured .check::after { color: var(--mocha); }
+    .packages-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.83rem;
+      color: var(--bark);
+      font-weight: 300;
+    }
+    .packages-note a { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--warm-white); text-align: center; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 2rem 1.75rem;
+      text-align: left;
+    }
+    .testimonial-card .t-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--espresso);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+    }
+    .testimonial-card .t-quote::before { content: '\201C'; }
+    .testimonial-card .t-quote::after { content: '\201D'; }
+    .testimonial-card .t-source {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 600;
+    }
+    .testimonial-card .t-source span {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--sand);
+      font-weight: 400;
+      margin-top: 0.15rem;
+      letter-spacing: 0.06em;
+    }
+    .t-placeholder {
+      background: var(--linen);
+      border: 1px dashed var(--sand);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .t-placeholder p {
+      font-size: 0.83rem;
+      color: var(--taupe);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .t-placeholder a { color: var(--accent); text-decoration: none; font-weight: 500; font-style: normal; }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: linear-gradient(145deg, var(--espresso) 0%, #2C2520 100%);
+      text-align: center;
+      padding: 7rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,169,161,0.1) 0%, transparent 65%);
+    }
+    .cta-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mocha);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+      position: relative;
+      line-height: 1.15;
+    }
+    .cta-section h2 em { font-style: italic; color: var(--mocha); }
+    .cta-section .cta-body {
+      color: rgba(250,247,242,0.55);
+      font-size: 0.93rem;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2.75rem;
+      line-height: 1.9;
+      position: relative;
+    }
+    .cta-email-big {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,169,161,0.4);
+      padding-bottom: 0.25rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      transition: border-color 0.2s, color 0.2s;
+      font-style: italic;
+    }
+    .cta-email-big:hover { color: var(--mocha); border-color: var(--mocha); }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .btn-outline-light {
+      display: inline-block;
+      padding: 0.95rem 2.5rem;
+      border: 1.5px solid rgba(212,169,161,0.35);
+      color: var(--cream);
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-outline-light:hover { background: rgba(212,169,161,0.12); transform: translateY(-1px); }
+    .cta-contact-line {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: rgba(250,247,242,0.3);
+      position: relative;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--espresso);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-left {}
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .footer-tagline {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(212,169,161,0.5);
+      margin-top: 0.15rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy {
+      font-size: 0.68rem;
+      color: rgba(250,247,242,0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    }
+    @media (max-width: 860px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links li:not(:last-child) { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .about-badge { bottom: -1rem; right: 0; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .types-grid { grid-template-columns: 1fr 1fr; }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .travel-grid { grid-template-columns: repeat(3, 1fr); }
+      .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .steps-grid::before { display: none; }
+      .details-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .packages-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 4rem 1.25rem; }
+      .types-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: 1fr; }
+      .travel-grid { grid-template-columns: repeat(2, 1fr); }
+      .details-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">
+      Hannah Capps
+      <span>UGC Creator + Photographer</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#contact" class="nav-cta">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">✦ &nbsp;Available for Brand Partnerships</div>
+      <h1>UGC built by a<br><em>professional photographer.</em></h1>
+      <p class="hero-sub">
+        I'm Hannah — a professional photographer creating brand content that stands out because it's built differently. Clean light, real life, photography-level quality. Your product, elevated.
+      </p>
+      <div class="hero-cta-wrap">
+        <a href="mailto:Collabs@HannahCapps.com" class="btn-primary">Let's Work Together</a>
+        <a href="#photos" class="btn-outline">See My Work ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item">
+        <div class="stat-value">9+</div>
+        <div class="stat-label">Years as a Pro Photographer</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">5–7</div>
+        <div class="stat-label">Day Turnaround</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Usage Rights Included</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">★ 5.0</div>
+        <div class="stat-label">Brand Review Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-image-wrap">
+          <img src="portfolio-images/Hannah_Capps_Photography_Hot_Springs_Arkansas_Wedding_Family_Branding_Photographer_310A8123.JPG" alt="Hannah Capps – UGC Creator &amp; Photographer" class="about-photo">
+          <div class="about-badge">
+            <span class="b-num">9+</span>
+            <span class="b-label">Years as a Pro<br>Photographer</span>
+          </div>
+        </div>
+        <div class="about-content">
+          <p class="section-eyebrow" style="text-align:left; margin-bottom: 0.65rem;">About Me</p>
+          <h2>Not your average<br>UGC creator — <em>not even close.</em></h2>
+          <p>
+            Most creators learn on the fly. I walked in with a full professional photography background — which means I understand light, composition, and what actually makes a product look compelling on camera.
+          </p>
+          <p>
+            The difference shows immediately. My content is cleaner, better lit, and more visually intentional than what most brands are used to seeing from UGC creators at this price point.
+          </p>
+          <p>
+            I'm also a real wife, mom of two boys, and homeowner based in Hot Springs, Arkansas. I live the kind of life your audience aspires to — and that authenticity comes through in every piece of content I make.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Natural Light</span>
+            <span class="tag">Minimal Aesthetic</span>
+            <span class="tag">Conversion-Focused</span>
+            <span class="tag">Brand-Safe</span>
+            <span class="tag">Hot Springs, AR</span>
+            <span class="tag">Faith + Family</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT TYPES -->
+  <section class="content-types">
+    <div class="section-inner">
+      <p class="section-eyebrow">What I Create</p>
+      <h2 class="section-title">Content for every part of <em>your funnel.</em></h2>
+      <p class="section-intro">From scroll-stopping hooks to trust-building testimonials — I create the full range of assets your brand actually needs.</p>
+      <div class="types-grid">
+        <div class="type-card">
+          <div class="type-icon">🎬</div>
+          <h3>Product Demos</h3>
+          <p>Clear, beautiful demonstrations that show your product in use — styled to feel real, not rehearsed.</p>
+        </div>
+        <div class="type-card">
+          <div class="type-icon">🤳</div>
+          <h3>Talking Head / Testimonials</h3>
+          <p>Genuine on-camera reviews that build trust. I only partner with products I'd authentically recommend.</p>
+        </div>
+        <div class="type-card">
+          <div class="type-icon">🎙️</div>
+          <h3>Voiceover Videos</h3>
+          <p>Calm, confident narration that walks viewers through your product's value — feels personal, never scripted.</p>
+        </div>
+        <div class="type-card">
+          <div class="type-icon">🎞️</div>
+          <h3>Lifestyle B-Roll</h3>
+          <p>Atmospheric footage that places your product inside a real, aspirational life. No stock vibes.</p>
+        </div>
+        <div class="type-card">
+          <div class="type-icon">📸</div>
+          <h3>Photo Packages</h3>
+          <p>Professional-grade lifestyle stills — beautifully lit and ready for ads, social, or your website.</p>
+        </div>
+        <div class="type-card">
+          <div class="type-icon">🔁</div>
+          <h3>Monthly Retainers</h3>
+          <p>A reliable creative partnership with fresh content every month — no re-pitching, no inconsistency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO PORTFOLIO -->
+  <section class="media-section" id="photos">
+    <div class="section-inner">
+      <p class="section-eyebrow">Photo Portfolio</p>
+      <h2 class="section-title">Photography-quality UGC.<br><em>See the difference.</em></h2>
+      <p class="section-intro">Every image is intentionally lit, composed, and styled to make your product look its absolute best.</p>
+
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">📦</span>
+            <span class="label-text">Product Showcase</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/Hannah_Capps_Photography_Hot_Springs_AR_Branding_Portraits_4Y0A0617.jpg" alt="Product Showcase">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🏡</span>
+            <span class="label-text">Real-Life Setting</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/ugc-new-3.jpg" alt="Product in Real-Life Setting">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🤍</span>
+            <span class="label-text">Clean Product Shot</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/ugc-new-4.jpg" alt="Clean White Background Product Shot">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🤳</span>
+            <span class="label-text">Lifestyle Demo</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/ugc-5.jpg" alt="Lifestyle Demo">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🌿</span>
+            <span class="label-text">In-Use Shot</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/Hannah_Capps_Photography_Hot_Springs_AR_Branding_Portraits_4Y0A0899.jpg" alt="In-Use Shot">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">✨</span>
+            <span class="label-text">Styled Flat Lay</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/ugc-4.jpg" alt="Styled Flat Lay">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO PORTFOLIO -->
+  <section class="media-section alt" id="videos">
+    <div class="section-inner">
+      <p class="section-eyebrow">Video Portfolio</p>
+      <h2 class="section-title">Video content that <em>converts.</em></h2>
+      <p class="section-intro">Short-form video built for paid ads, organic reach, and everywhere in between — natural, confident, and always on-brand.</p>
+
+      <div class="media-grid video-grid">
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🎬</span>
+            <span class="label-text">Product Demo</span>
+          </div>
+          <a href="https://www.youtube.com/shorts/f8jivM6fZ60" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/f8jivM6fZ60/hqdefault.jpg" alt="Product Demo – ZO Skin Health" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🎙️</span>
+            <span class="label-text">Voice Over + Pet Lifestyle</span>
+          </div>
+          <a href="https://youtube.com/shorts/m5aFJfSHSqA" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/m5aFJfSHSqA/hqdefault.jpg" alt="Voiceover and pet lifestyle demo" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🗣️</span>
+            <span class="label-text">Talking Head</span>
+          </div>
+          <a href="https://youtube.com/shorts/slGgj_stB04" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/slGgj_stB04/hqdefault.jpg" alt="Talking head video demo" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">📬</span>
+            <span class="label-text">Unboxing</span>
+          </div>
+          <a href="https://youtube.com/shorts/7lrCLj6hk1s" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/7lrCLj6hk1s/hqdefault.jpg" alt="Unboxing demo video" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🎞️</span>
+            <span class="label-text">How-To Video</span>
+          </div>
+          <a href="https://youtube.com/shorts/WmD0wwFERsc" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/WmD0wwFERsc/hqdefault.jpg" alt="How-to video demo" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">✈️</span>
+            <span class="label-text">Travel Experience</span>
+          </div>
+          <a href="https://youtube.com/shorts/-jL7TPSYyQw" target="_blank" class="video-thumb-link">
+            <div class="media-card-visual">
+              <img src="https://img.youtube.com/vi/-jL7TPSYyQw/hqdefault.jpg" alt="Travel experience video" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <div class="video-thumb-overlay">
+                <div class="video-thumb-play">▶</div>
+                <span class="video-thumb-label">Watch on YouTube</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL PORTFOLIO -->
+  <section class="media-section" id="travel">
+    <div class="section-inner">
+      <p class="section-eyebrow">Travel + Hospitality</p>
+      <h2 class="section-title">Property content that makes<br>guests <em>book instantly.</em></h2>
+      <p class="section-intro">From ocean-view balconies to beautifully styled suites — I capture the experience that makes a property impossible to scroll past.</p>
+
+      <div class="media-grid travel-grid">
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🌊</span>
+            <span class="label-text">Ocean View</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/IMG_1078.JPG" alt="Ocean view balcony">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🛏️</span>
+            <span class="label-text">Styled Suite</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/IMG_1080.JPG" alt="Styled hotel suite">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">✨</span>
+            <span class="label-text">Amenity Detail</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/IMG_1086.JPG" alt="Amenity detail shot">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🏡</span>
+            <span class="label-text">Property Interior</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/IMG_1095.JPG" alt="Property interior">
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-label">
+            <span class="label-icon">🏨</span>
+            <span class="label-text">Property Exterior</span>
+          </div>
+          <div class="media-card-visual">
+            <img src="portfolio-images/IMG_1111.JPG" alt="Property exterior">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <div class="section-inner">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-title">Simple, smooth,<br><em>stress-free.</em></h2>
+      <p class="section-intro">Working with me is easy. Here's exactly what to expect from first hello to final files.</p>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num"><span>01</span></div>
+          <h3>We Connect &amp; Align</h3>
+          <p>You tell me about your product, goals, and any direction you have. I ask smart questions to make sure the content hits the mark before I ever pick up a camera.</p>
+        </div>
+        <div class="step">
+          <div class="step-num"><span>02</span></div>
+          <h3>I Create Your Content</h3>
+          <p>I shoot, style, and edit everything with my professional photography background guiding every decision — light, composition, feel. No hand-holding needed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num"><span>03</span></div>
+          <h3>You Receive Ready-to-Use Assets</h3>
+          <p>Polished, delivered on time, ready for ads or organic. Full usage rights included. One round of revisions if needed — and you'll rarely need it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NICHES -->
+  <section class="niches">
+    <div class="section-inner">
+      <p class="section-eyebrow">Brand Niches</p>
+      <h2 class="section-title">I create content for brands<br>I actually <em>believe in.</em></h2>
+      <p class="section-intro">I'm selective about who I work with — which means when I show up for your brand, it's real. These are the spaces where my content performs best.</p>
+      <div class="niches-list">
+        <span class="niche-pill">🏡 Home + Organization</span>
+        <span class="niche-pill">✨ Beauty + Clean Skincare</span>
+        <span class="niche-pill">👶 Motherhood + Family</span>
+        <span class="niche-pill">🤍 Faith-Based Lifestyle</span>
+        <span class="niche-pill">🌿 Arkansas + Southern Lifestyle</span>
+        <span class="niche-pill">🐾 Pet + Family Wellness</span>
+        <span class="niche-pill">🍃 Clean Living + Wellness</span>
+        <span class="niche-pill">🏨 Travel + Hospitality</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANNAH -->
+  <section class="why">
+    <div class="section-inner">
+      <p class="section-eyebrow">Why Work With Me</p>
+      <h2 class="section-title">The difference brands<br><em>notice immediately.</em></h2>
+      <p class="section-intro">Here's what sets my content apart from every other creator in your inbox.</p>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-number">01</div>
+          <h3>Photography-Level Quality</h3>
+          <p>I don't just point and shoot. I understand exposure, composition, and light — so your product looks its absolute best in every frame.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-number">02</div>
+          <h3>Genuine Lifestyle Integration</h3>
+          <p>I'm a real mom, wife, and homeowner. Your product fits into my actual everyday life — and your audience can feel the difference.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-number">03</div>
+          <h3>Zero Hand-Holding Needed</h3>
+          <p>I communicate clearly, deliver on time, and treat every collab like a professional project. You'll never have to chase me for an update.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND DETAILS -->
+  <section class="brand-details">
+    <div class="section-inner">
+      <p class="section-eyebrow">For Brands</p>
+      <h2 class="section-title">Everything you need<br>to <em>say yes.</em></h2>
+      <p class="section-intro">The logistics, answered upfront — so working together is as easy as possible.</p>
+      <div class="details-grid">
+        <div class="detail-card">
+          <span class="detail-icon">⏱️</span>
+          <h4>Turnaround Time</h4>
+          <p>5–7 Business Days</p>
+          <small>Rush delivery available on request</small>
+        </div>
+        <div class="detail-card">
+          <span class="detail-icon">⚖️</span>
+          <h4>Usage Rights</h4>
+          <p>Full Usage Included</p>
+          <small>Ads, organic, website — all covered</small>
+        </div>
+        <div class="detail-card">
+          <span class="detail-icon">🔄</span>
+          <h4>Revisions</h4>
+          <p>1 Round Included</p>
+          <small>Most brands don't need it</small>
+        </div>
+        <div class="detail-card">
+          <span class="detail-icon">📁</span>
+          <h4>File Delivery</h4>
+          <p>MP4 + High-Res JPG</p>
+          <small>Delivered via online gallery</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages" id="packages">
+    <div class="section-inner">
+      <p class="section-eyebrow">Investment</p>
+      <h2 class="section-title">Clear, simple,<br><em>worth it.</em></h2>
+      <p class="section-intro">No surprise fees. No vague pricing. Just straightforward creative partnerships that deliver real value.</p>
+
+      <div class="packages-grid">
+        <div class="package-card">
+          <p class="package-name">Single Deliverable</p>
+          <p class="package-price">$150–$300</p>
+          <p class="package-price-note">per video or photo set, based on scope</p>
+          <div class="package-divider"></div>
+          <ul class="package-includes">
+            <li><span class="check"></span>1 finished short-form video (30–60 sec)</li>
+            <li><span class="check"></span>Raw footage available on request</li>
+            <li><span class="check"></span>Full usage rights included</li>
+            <li><span class="check"></span>1 round of revisions</li>
+            <li><span class="check"></span>Delivered in 5–7 business days</li>
+          </ul>
+        </div>
+
+        <div class="package-card featured">
+          <div class="featured-badge">Best Value</div>
+          <p class="package-name">Monthly Retainer</p>
+          <p class="package-price">$1,800–$2,500</p>
+          <p class="package-price-note">per month · 2–3 spots available</p>
+          <div class="package-divider"></div>
+          <ul class="package-includes">
+            <li><span class="check"></span>4 finished short-form videos/month</li>
+            <li><span class="check"></span>8 professional lifestyle photos/month</li>
+            <li><span class="check"></span>Consistent, reliable creative partnership</li>
+            <li><span class="check"></span>Full usage rights on all content</li>
+            <li><span class="check"></span>Priority turnaround + dedicated communication</li>
+          </ul>
+        </div>
+
+        <div class="package-card">
+          <p class="package-name">Photo Package</p>
+          <p class="package-price">Custom</p>
+          <p class="package-price-note">priced by deliverable count + usage</p>
+          <div class="package-divider"></div>
+          <ul class="package-includes">
+            <li><span class="check"></span>Professional lifestyle stills</li>
+            <li><span class="check"></span>Product flat lays + in-use shots</li>
+            <li><span class="check"></span>Natural light, minimal aesthetic</li>
+            <li><span class="check"></span>Website, social &amp; ad-ready sizing</li>
+            <li><span class="check"></span>Fully edited, delivered via gallery</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="packages-note">All packages are flexible. Let's talk about what your brand actually needs. →&nbsp;<a href="mailto:Collabs@HannahCapps.com">Collabs@HannahCapps.com</a></p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <p class="section-eyebrow">Kind Words</p>
+      <h2 class="section-title" style="margin-bottom: 2.75rem;">What brands<br><em>are saying.</em></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+            <span style="color:#E8A0A0; font-size:1rem; letter-spacing:0.05em;">★★★★★</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--taupe);">Apr 2026</span>
+          </div>
+          <p class="t-quote">Absolutely loved working with Hannah. She comes across very natural in her content. We've already hired her to work with us again!</p>
+          <p class="t-source">myWONDERBALM I Love Me
+            <span>Beauty Brand · 5-Star Review</span>
+          </p>
+        </div>
+        <div class="testimonial-card">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+            <span style="color:#E8A0A0; font-size:1rem; letter-spacing:0.05em;">★★★★★</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--taupe);">Feb 2026</span>
+          </div>
+          <p class="t-quote">This creator submitted awesome work and we will be working with them again in the future!</p>
+          <p class="t-source">Weight Loss Supplement Brand
+            <span>Wellness Brand · 5-Star Review</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <p class="cta-eyebrow">Ready to Create Together?</p>
+    <h2>Let's make content your<br>audience actually <em>trusts.</em></h2>
+    <p class="cta-body">Whether you're testing UGC for the first time or looking for a consistent monthly creative partner — I'd love to connect. Retainer spots are limited.</p>
+    <a href="mailto:Collabs@HannahCapps.com" class="cta-email-big">Collabs@HannahCapps.com</a>
+    <div class="cta-buttons">
+      <a href="mailto:Collabs@HannahCapps.com" class="btn-light">Send Me an Email</a>
+      <a href="https://instagram.com/hannahcappsugc" target="_blank" class="btn-outline-light">Follow @hannahcappsugc</a>
+    </div>
+    <p class="cta-contact-line">Hot Springs, Arkansas &nbsp;·&nbsp; Available for travel &nbsp;·&nbsp; Remote-friendly</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="footer-logo">Hannah Capps</div>
+      <div class="footer-tagline">UGC Creator + Professional Photographer</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://instagram.com/hannahcappsugc" target="_blank">Instagram</a></li>
+      <li><a href="https://tiktok.com/@hannahcappsugc" target="_blank">TikTok</a></li>
+      <li><a href="https://www.youtube.com/@hannahcappsugc" target="_blank">YouTube</a></li>
+      <li><a href="mailto:Collabs@HannahCapps.com">Email</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Hannah Capps · Hot Springs, AR</div>
+  </footer>
+
+
+
+</body></html>
