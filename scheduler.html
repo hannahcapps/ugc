@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hannah Capps | Content Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ivory:      #FAF4ED;
+    --white:      #FDFBF7;
+    --honey:      #A68A64;
+    --honey-soft: #C2AC8C;
+    --blush:      #E8CFC3;
+    --ink:        #3E3530;
+    --espresso:   #5C4A3A;
+    --taupe:      #B8A590;
+    --rose:       #C8998A;
+    --sage:       #A8B099;
+    --cream:      #F3E7D2;
+    --soft-taupe: #D9CBBA;
+    --honey-acc:  #A68A64;
+    --shadow:     0 6px 24px rgba(92, 74, 58, 0.08);
+    --shadow-sm:  0 2px 10px rgba(92, 74, 58, 0.06);
+    --radius:     14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    background-color: var(--ivory);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Bodoni Moda', serif; font-weight: 400; color: var(--ink); line-height: 1.25; }
+  .script { font-family: 'Dancing Script', cursive; color: var(--honey); font-weight: 600; }
+
+  button { font-family: 'Poppins', sans-serif; cursor: pointer; border: none; background: none; }
+  input, select, textarea {
+    font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 0.85rem;
+    color: var(--ink); background: var(--white);
+    border: 1px solid var(--blush); border-radius: 9px; padding: 0.6rem 0.75rem; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--honey);
+    box-shadow: 0 0 0 3px rgba(166, 138, 100, 0.12);
+  }
+  textarea { resize: vertical; min-height: 70px; line-height: 1.55; }
+  label { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--espresso); font-weight: 500; display: block; margin-bottom: 0.3rem; }
+
+  /* ---------- App shell ---------- */
+  .app { display: flex; min-height: 100vh; }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    width: 270px; flex-shrink: 0; background: var(--white);
+    border-right: 1px solid var(--blush); padding: 1.6rem 1.3rem;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  .brand { margin-bottom: 1.8rem; }
+  .brand .logo { font-family: 'Bodoni Moda', serif; font-size: 1.35rem; letter-spacing: 0.02em; }
+  .brand .tag { font-family: 'Dancing Script', cursive; color: var(--honey); font-size: 1.05rem; margin-top: -2px; }
+
+  .nav-group { margin-bottom: 1.6rem; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 0.65rem; width: 100%; text-align: left;
+    padding: 0.6rem 0.8rem; border-radius: 10px; color: var(--espresso);
+    font-size: 0.86rem; font-weight: 300; margin-bottom: 0.25rem; transition: background 0.18s, color 0.18s;
+  }
+  .nav-btn .ic { width: 18px; text-align: center; opacity: 0.85; }
+  .nav-btn:hover { background: var(--ivory); }
+  .nav-btn.active { background: var(--cream); color: var(--ink); font-weight: 500; }
+
+  .side-title { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); font-weight: 500; margin-bottom: 0.9rem; }
+
+  .goal-card { background: var(--ivory); border: 1px solid var(--blush); border-radius: 12px; padding: 0.85rem 0.9rem; margin-bottom: 0.8rem; }
+  .goal-card .gc-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+  .goal-card .gc-name { font-size: 0.78rem; color: var(--ink); font-weight: 500; }
+  .goal-card .gc-val { font-size: 0.7rem; color: var(--espresso); }
+  .bar { height: 7px; background: var(--soft-taupe); border-radius: 6px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--honey-soft), var(--honey)); border-radius: 6px; transition: width 0.4s ease; }
+  .goal-card input { padding: 0.4rem 0.55rem; font-size: 0.8rem; margin-top: 0.4rem; }
+  .goal-edit { font-size: 0.66rem; color: var(--honey); margin-top: 0.45rem; cursor: pointer; display: inline-block; }
+
+  .goal-counts { margin-top: 1.1rem; }
+  .gcount-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; padding: 0.4rem 0; border-bottom: 1px dashed var(--blush); }
+  .gcount-row:last-child { border-bottom: none; }
+  .gcount-row .pill-dot { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--espresso); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .gcount-row b { font-family: 'Bodoni Moda', serif; font-weight: 500; color: var(--ink); font-size: 0.95rem; }
+
+  /* ---------- Main ---------- */
+  .main { flex: 1; min-width: 0; }
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.3rem 2rem 0.4rem; flex-wrap: wrap; gap: 0.8rem;
+  }
+  .topbar h1 { font-size: 1.7rem; }
+  .topbar .sub { color: var(--taupe); font-size: 0.8rem; margin-top: 0.1rem; }
+  .quick-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+  .btn {
+    padding: 0.55rem 1.1rem; border-radius: 9px; font-size: 0.8rem; font-weight: 400;
+    letter-spacing: 0.02em; transition: transform 0.12s, box-shadow 0.2s, background 0.2s; display: inline-flex; align-items: center; gap: 0.45rem;
+  }
+  .btn-primary { background: var(--honey); color: var(--white); box-shadow: var(--shadow-sm); }
+  .btn-primary:hover { background: #95794f; transform: translateY(-1px); }
+  .btn-soft { background: var(--white); color: var(--espresso); border: 1px solid var(--blush); }
+  .btn-soft:hover { background: var(--white); border-color: var(--honey); color: var(--ink); }
+  .btn-ghost { background: transparent; color: var(--espresso); border: 1px solid transparent; }
+  .btn-ghost:hover { background: var(--ivory); }
+  .btn.sm { padding: 0.35rem 0.7rem; font-size: 0.72rem; }
+
+  .view { padding: 1.3rem 2rem 3rem; }
+  .hidden { display: none !important; }
+
+  /* ---------- Cards / grid ---------- */
+  .grid { display: grid; gap: 1.1rem; }
+  .stat-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 1.3rem; }
+  .panel { background: var(--white); border: 1px solid var(--blush); border-radius: var(--radius); padding: 1.3rem; box-shadow: var(--shadow-sm); }
+  .panel h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .panel .phint { color: var(--taupe); font-size: 0.74rem; margin-bottom: 1rem; }
+
+  .stat { background: var(--white); border: 1px solid var(--blush); border-radius: var(--radius); padding: 1.1rem 1.2rem; box-shadow: var(--shadow-sm); }
+  .stat .num { font-family: 'Bodoni Moda', serif; font-size: 2.2rem; color: var(--ink); line-height: 1; }
+  .stat .lbl { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--taupe); margin-top: 0.45rem; }
+  .stat.accent { background: linear-gradient(160deg, #fff, var(--cream)); border-color: var(--blush); }
+
+  .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.1rem; align-items: start; }
+  @media (max-width: 980px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ---------- Donut ---------- */
+  .donut-wrap { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+  .donut { width: 150px; height: 150px; border-radius: 50%; position: relative; flex-shrink: 0; }
+  .donut::after { content: ''; position: absolute; inset: 26px; background: var(--white); border-radius: 50%; }
+  .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; }
+  .donut-center .big { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; color: var(--ink); }
+  .donut-center .small { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); }
+  .legend { display: flex; flex-direction: column; gap: 0.5rem; }
+  .legend-row { display: flex; align-items: center; gap: 0.55rem; font-size: 0.78rem; color: var(--espresso); }
+  .legend-row b { margin-left: auto; font-family: 'Bodoni Moda', serif; color: var(--ink); padding-left: 1rem; }
+
+  /* ---------- Upcoming list ---------- */
+  .up-row { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid var(--blush); }
+  .up-row:last-child { border-bottom: none; }
+  .up-date { text-align: center; flex-shrink: 0; width: 50px; }
+  .up-date .d { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; color: var(--ink); line-height: 1; }
+  .up-date .m { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); }
+  .up-body { flex: 1; min-width: 0; }
+  .up-body .h { font-size: 0.85rem; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .up-body .meta { font-size: 0.7rem; color: var(--taupe); display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.15rem; }
+
+  .badge { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 20px; font-weight: 500; }
+  .badge.draft { background: var(--soft-taupe); color: var(--espresso); }
+  .badge.scheduled { background: var(--cream); color: var(--honey); }
+  .badge.posted { background: var(--sage); color: #3f4636; }
+  .chip { font-size: 0.64rem; padding: 0.15rem 0.5rem; border-radius: 20px; background: var(--ivory); border: 1px solid var(--blush); color: var(--espresso); }
+
+  .empty { text-align: center; padding: 2.2rem 1rem; color: var(--taupe); font-size: 0.85rem; }
+  .empty .ei { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
+  /* ---------- Calendar ---------- */
+  .cal-toolbar { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .seg { display: inline-flex; background: var(--white); border: 1px solid var(--blush); border-radius: 9px; overflow: hidden; }
+  .seg button { padding: 0.45rem 0.9rem; font-size: 0.78rem; color: var(--espresso); }
+  .seg button.active { background: var(--honey); color: var(--white); }
+  .cal-title { font-family: 'Bodoni Moda', serif; font-size: 1.25rem; margin: 0 0.4rem; }
+  .nav-arrow { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--blush); background: var(--white); color: var(--espresso); font-size: 1rem; display: inline-flex; align-items: center; justify-content: center; }
+  .nav-arrow:hover { border-color: var(--honey); color: var(--ink); }
+
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal-head { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); text-align: center; padding: 0.4rem 0; font-weight: 500; }
+  .cal-cell { background: var(--white); border: 1px solid var(--blush); border-radius: 10px; min-height: 118px; padding: 0.4rem; transition: border-color 0.15s, background 0.15s; }
+  .cal-cell.muted { background: var(--ivory); opacity: 0.6; }
+  .cal-cell.today { border-color: var(--honey); box-shadow: 0 0 0 2px rgba(166,138,100,0.15); }
+  .cal-cell.drop-hover { border-color: var(--honey); background: var(--cream); }
+  .cal-cell .cnum { font-size: 0.72rem; color: var(--taupe); margin-bottom: 0.3rem; display: flex; justify-content: space-between; align-items: center; }
+  .cal-cell .cadd { opacity: 0; font-size: 0.9rem; color: var(--honey); transition: opacity 0.15s; line-height: 1; }
+  .cal-cell:hover .cadd { opacity: 1; }
+  .week-grid .cal-cell { min-height: 360px; }
+
+  .post-chip {
+    border-radius: 8px; padding: 0.35rem 0.45rem; margin-bottom: 0.35rem; cursor: grab;
+    border-left: 4px solid var(--honey); background: var(--ivory); font-size: 0.7rem; color: var(--ink);
+    box-shadow: var(--shadow-sm); transition: transform 0.1s;
+  }
+  .post-chip:active { cursor: grabbing; }
+  .post-chip.dragging { opacity: 0.45; }
+  .post-chip .pc-time { font-size: 0.6rem; color: var(--taupe); display: flex; justify-content: space-between; align-items: center; }
+  .post-chip .pc-acc { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .post-chip .pc-hook { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.1rem; font-weight: 400; }
+  .post-chip .pc-foot { display: flex; gap: 0.3rem; align-items: center; margin-top: 0.2rem; }
+  .mini-badge { font-size: 0.54rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.05rem 0.35rem; border-radius: 10px; }
+
+  /* ---------- Modal ---------- */
+  .overlay { position: fixed; inset: 0; background: rgba(62, 53, 48, 0.34); backdrop-filter: blur(3px); z-index: 200; display: flex; align-items: flex-start; justify-content: center; padding: 2.5rem 1rem; overflow-y: auto; }
+  .modal { background: var(--white); border-radius: 18px; width: 100%; max-width: 640px; box-shadow: var(--shadow); border: 1px solid var(--blush); animation: pop 0.18s ease; }
+  .modal.wide { max-width: 860px; }
+  @keyframes pop { from { transform: translateY(8px) scale(0.99); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.3rem 1.5rem 0.8rem; border-bottom: 1px solid var(--blush); }
+  .modal-head h2 { font-size: 1.35rem; }
+  .modal-head .mh-sub { color: var(--taupe); font-size: 0.76rem; }
+  .modal-body { padding: 1.3rem 1.5rem; }
+  .modal-foot { padding: 1rem 1.5rem; border-top: 1px solid var(--blush); display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .x-btn { font-size: 1.4rem; color: var(--taupe); line-height: 1; padding: 0.1rem 0.4rem; border-radius: 8px; }
+  .x-btn:hover { background: var(--ivory); color: var(--ink); }
+
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .field-grid .full { grid-column: 1 / -1; }
+  @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 0.1rem; }
+  .count-hint { font-size: 0.64rem; color: var(--taupe); margin-top: 0.2rem; text-align: right; }
+
+  /* ---------- AI generator ---------- */
+  .ai-out { background: var(--ivory); border: 1px solid var(--blush); border-radius: 12px; padding: 1rem 1.1rem; margin-top: 1rem; }
+  .ai-block { margin-bottom: 0.9rem; }
+  .ai-block:last-child { margin-bottom: 0; }
+  .ai-block .albl { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--honey); font-weight: 500; margin-bottom: 0.25rem; }
+  .ai-block .aval { font-size: 0.86rem; color: var(--ink); white-space: pre-wrap; }
+  .ai-block .hashes { color: var(--espresso); font-size: 0.78rem; }
+  .hookline { padding: 0.4rem 0; border-bottom: 1px dashed var(--blush); font-size: 0.84rem; }
+  .hookline:last-child { border-bottom: none; }
+  .hookline b { font-family: 'Bodoni Moda', serif; font-weight: 500; color: var(--honey); margin-right: 0.4rem; }
+
+  .spinner { width: 18px; height: 18px; border: 2px solid var(--blush); border-top-color: var(--honey); border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; vertical-align: middle; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .batch-clip { background: var(--ivory); border: 1px solid var(--blush); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 0.9rem; }
+  .batch-clip .bc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .batch-clip .bc-num { font-family: 'Bodoni Moda', serif; color: var(--honey); font-size: 1rem; }
+
+  .toast { position: fixed; bottom: 1.4rem; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--white); padding: 0.7rem 1.3rem; border-radius: 30px; font-size: 0.82rem; box-shadow: var(--shadow); z-index: 400; opacity: 0; transition: opacity 0.25s, transform 0.25s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+  .note { background: var(--cream); border: 1px solid var(--blush); border-radius: 10px; padding: 0.7rem 0.9rem; font-size: 0.76rem; color: var(--espresso); margin-bottom: 1rem; }
+  .note a { color: var(--honey); }
+  .row-flex { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .grow { flex: 1; min-width: 0; }
+  .sep { height: 1px; background: var(--blush); margin: 1.1rem 0; }
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-thumb { background: var(--soft-taupe); border-radius: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">Hannah Capps</div>
+      <div class="tag">content studio</div>
+    </div>
+
+    <nav class="nav-group">
+      <button class="nav-btn active" data-view="dashboard"><span class="ic">&#9737;</span> Dashboard</button>
+      <button class="nav-btn" data-view="calendar"><span class="ic">&#9783;</span> Calendar</button>
+      <button class="nav-btn" data-view="batch"><span class="ic">&#9776;</span> Batch Mode</button>
+      <button class="nav-btn" data-view="settings"><span class="ic">&#9881;</span> Settings</button>
+    </nav>
+
+    <div class="side-title">Revenue Goals</div>
+    <div id="goalCards"></div>
+
+    <div class="goal-counts">
+      <div class="side-title">Goals This Week</div>
+      <div id="goalCounts"></div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <h1 id="pageTitle">This Week at a Glance</h1>
+        <div class="sub" id="pageSub">Light, airy, intentional. One post at a time.</div>
+      </div>
+      <div class="quick-actions">
+        <button class="btn btn-soft" onclick="openAI()">&#10024; Generate Caption</button>
+        <button class="btn btn-soft" onclick="switchView('batch')">&#9776; Batch Mode</button>
+        <button class="btn btn-primary" onclick="openPost()">&#43; New Post</button>
+      </div>
+    </div>
+
+    <!-- ---------- DASHBOARD ---------- -->
+    <section id="view-dashboard" class="view">
+      <div class="grid stat-grid">
+        <div class="stat"><div class="num" id="st-sched">0</div><div class="lbl">Scheduled</div></div>
+        <div class="stat"><div class="num" id="st-draft">0</div><div class="lbl">Drafted</div></div>
+        <div class="stat"><div class="num" id="st-live">0</div><div class="lbl">Posted Live</div></div>
+        <div class="stat accent"><div class="num" id="st-total">0</div><div class="lbl">This Week Total</div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>Content Mix</h3>
+          <div class="phint">Your pillar balance for this week</div>
+          <div class="donut-wrap">
+            <div class="donut" id="donut">
+              <div class="donut-center"><span class="big" id="donut-total">0</span><span class="small">posts</span></div>
+            </div>
+            <div class="legend" id="donut-legend"></div>
+          </div>
+          <div class="sep"></div>
+          <h3 style="font-size:1rem;">Goal Alignment</h3>
+          <div class="phint">Every post moves one revenue lever</div>
+          <div id="goalAlign"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Coming Up Next</h3>
+          <div class="phint">Your next three scheduled posts</div>
+          <div id="upcoming"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CALENDAR ---------- -->
+    <section id="view-calendar" class="view hidden">
+      <div class="cal-toolbar">
+        <div class="seg">
+          <button id="seg-week" onclick="setCalMode('week')">Week</button>
+          <button id="seg-month" class="active" onclick="setCalMode('month')">Month</button>
+        </div>
+        <button class="nav-arrow" onclick="calStep(-1)">&#8249;</button>
+        <button class="nav-arrow" onclick="calStep(1)">&#8250;</button>
+        <button class="btn btn-ghost sm" onclick="calToday()">Today</button>
+        <span class="cal-title" id="calTitle"></span>
+        <span class="grow"></span>
+        <button class="btn btn-soft sm" onclick="exportCSV()">&#8615; Export CSV</button>
+        <button class="btn btn-primary sm" onclick="openPost()">&#43; New Post</button>
+      </div>
+      <div id="calGrid"></div>
+      <div class="row-flex" style="margin-top:1rem; font-size:0.72rem; color:var(--taupe);">
+        <span class="row-flex"><span class="pc-acc" style="background:var(--rose)"></span> @hannahcappsphoto</span>
+        <span class="row-flex"><span class="pc-acc" style="background:var(--sage)"></span> @hannahcapps_ugc</span>
+        <span style="margin-left:0.6rem;">Drag any post card to a new day to reschedule.</span>
+      </div>
+    </section>
+
+    <!-- ---------- BATCH ---------- -->
+    <section id="view-batch" class="view hidden">
+      <div class="panel" style="margin-bottom:1.2rem;">
+        <h3>Batch Mode</h3>
+        <div class="phint">Describe 3 to 5 clips you filmed. Hannah's studio will write a full caption set for each, then push them to your calendar as drafts.</div>
+        <div class="field-grid">
+          <div class="field"><label>Account</label>
+            <select id="batch-account">
+              <option value="@hannahcappsphoto">@hannahcappsphoto</option>
+              <option value="@hannahcapps_ugc">@hannahcapps_ugc</option>
+            </select>
+          </div>
+          <div class="field"><label>Default Platform</label>
+            <select id="batch-platform">
+              <option>Instagram Reel</option><option>Instagram Story</option><option>TikTok</option><option>Pinterest</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:0.85rem;">
+          <label>Your clips (one per line)</label>
+          <textarea id="batch-input" rows="6" placeholder="Filmed a golden hour bride portrait session at the lake&#10;Quick phone tip: how to find soft window light at home&#10;Behind the scenes packing my camera bag for a family session&#10;Unboxing a skincare PR package for a brand deal"></textarea>
+        </div>
+        <div class="row-flex" style="margin-top:0.9rem;">
+          <button class="btn btn-primary" id="batch-go" onclick="runBatch()">&#10024; Generate Batch</button>
+          <span class="phint" style="margin:0;">Tip: blank lines are skipped. Aim for 3 to 5 clips.</span>
+        </div>
+      </div>
+      <div id="batch-results"></div>
+    </section>
+
+    <!-- ---------- SETTINGS ---------- -->
+    <section id="view-settings" class="view hidden">
+      <div class="panel" style="max-width:620px;">
+        <h3>Claude API Key</h3>
+        <div class="phint">Needed for the caption generator and batch mode. Your key is stored only in this browser (localStorage) and is sent straight to Anthropic.</div>
+        <div class="note">
+          Get a key at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>, paste it below, and save. Model used: claude-sonnet-4-6.
+        </div>
+        <label>API Key</label>
+        <div class="row-flex">
+          <input type="password" id="apiKeyInput" class="grow" placeholder="sk-ant-...">
+          <button class="btn btn-primary" onclick="saveKey()">Save</button>
+          <button class="btn btn-soft" onclick="toggleKey()">Show</button>
+        </div>
+        <div class="phint" id="keyStatus" style="margin-top:0.6rem;"></div>
+        <div class="sep"></div>
+        <h3 style="font-size:1.05rem;">Data</h3>
+        <div class="phint">Everything lives in this browser. Export keeps a copy for your VA.</div>
+        <div class="row-flex">
+          <button class="btn btn-soft" onclick="exportCSV()">&#8615; Export all posts to CSV</button>
+          <button class="btn btn-soft" onclick="seedSample()">Load sample week</button>
+          <button class="btn btn-ghost" onclick="clearAll()">Clear all data</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===================== POST MODAL ===================== -->
+<div class="overlay hidden" id="postOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h2 id="postModalTitle">New Post</h2>
+        <div class="mh-sub">Plan it once. Post it with intention.</div>
+      </div>
+      <button class="x-btn" onclick="closePost()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="f-id">
+      <div class="field-grid">
+        <div class="field"><label>Account</label>
+          <select id="f-account">
+            <option value="@hannahcappsphoto">@hannahcappsphoto</option>
+            <option value="@hannahcapps_ugc">@hannahcapps_ugc</option>
+          </select>
+        </div>
+        <div class="field"><label>Content Pillar</label>
+          <select id="f-pillar"></select>
+        </div>
+        <div class="field"><label>Platform</label>
+          <select id="f-platform">
+            <option>Instagram Reel</option><option>Instagram Story</option><option>TikTok</option><option>Pinterest</option>
+          </select>
+        </div>
+        <div class="field"><label>CTA Type (Goal)</label>
+          <select id="f-cta">
+            <option>Build Trust</option><option>Drive Inquiry</option><option>Grow Email List</option>
+          </select>
+        </div>
+        <div class="field full"><label>Hook / Overlay Text (one line)</label>
+          <input id="f-hook" maxlength="90" placeholder="The light was doing that thing again">
+        </div>
+        <div class="field full"><label>Full Caption</label>
+          <textarea id="f-caption" rows="5" placeholder="Write it warm and conversational, like you are talking to a friend."></textarea>
+          <div class="count-hint" id="capCount"></div>
+        </div>
+        <div class="field full"><label>Hashtags (25 to 30)</label>
+          <textarea id="f-hashtags" rows="2" placeholder="#hotspringsphotographer #arkansasweddingphotographer ..."></textarea>
+          <div class="count-hint" id="hashCount"></div>
+        </div>
+        <div class="field"><label>Audience Lane CTA</label>
+          <select id="f-lane">
+            <option>N/A</option>
+            <option>A Year of I Do</option>
+            <option>Beauty in the Everyday</option>
+            <option>Business Builders</option>
+          </select>
+        </div>
+        <div class="field"><label>Status</label>
+          <select id="f-status">
+            <option>Draft</option><option>Scheduled</option><option>Posted</option>
+          </select>
+        </div>
+        <div class="field"><label>Scheduled Date</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="field"><label>Time</label>
+          <input type="time" id="f-time" value="09:00">
+        </div>
+        <div class="field full"><label>Notes</label>
+          <textarea id="f-notes" rows="2" placeholder="Trending audio, props to grab, reminder to tag the brand."></textarea>
+        </div>
+      </div>
+      <div class="row-flex" style="margin-top:0.9rem;">
+        <button class="btn btn-soft sm" onclick="openAI(true)">&#10024; Fill with AI</button>
+        <span class="phint" style="margin:0;">Generate a caption set and drop it straight into these fields.</span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="deleteBtn" onclick="deletePost()" style="color:var(--rose);">Delete</button>
+      <span class="grow"></span>
+      <button class="btn btn-soft" onclick="closePost()">Cancel</button>
+      <button class="btn btn-primary" onclick="savePost()">Save Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== AI MODAL ===================== -->
+<div class="overlay hidden" id="aiOverlay">
+  <div class="modal wide">
+    <div class="modal-head">
+      <div>
+        <h2>Caption Studio</h2>
+        <div class="mh-sub">Tell it what you filmed. It writes in your voice.</div>
+      </div>
+      <button class="x-btn" onclick="closeAI()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-grid">
+        <div class="field"><label>Account</label>
+          <select id="ai-account">
+            <option value="@hannahcappsphoto">@hannahcappsphoto</option>
+            <option value="@hannahcapps_ugc">@hannahcapps_ugc</option>
+          </select>
+        </div>
+        <div class="field"><label>Content Pillar</label>
+          <select id="ai-pillar"></select>
+        </div>
+        <div class="field"><label>Platform</label>
+          <select id="ai-platform">
+            <option>Instagram Reel</option><option>Instagram Story</option><option>TikTok</option><option>Pinterest</option>
+          </select>
+        </div>
+        <div class="field"><label>Goal / CTA Type</label>
+          <select id="ai-cta">
+            <option>Build Trust</option><option>Drive Inquiry</option><option>Grow Email List</option>
+          </select>
+        </div>
+        <div class="field full"><label>What did you film or what is this post about?</label>
+          <textarea id="ai-input" rows="3" placeholder="Golden hour engagement session at the lake, she cried when he read his vows, soft and dreamy light."></textarea>
+        </div>
+      </div>
+      <div class="row-flex" style="margin-top:0.6rem;">
+        <button class="btn btn-primary" id="ai-go" onclick="runAI()">&#10024; Generate</button>
+        <span class="phint" id="ai-hint" style="margin:0;"></span>
+      </div>
+      <div id="ai-output"></div>
+    </div>
+    <div class="modal-foot">
+      <span class="grow"></span>
+      <button class="btn btn-soft" onclick="closeAI()">Close</button>
+      <button class="btn btn-primary hidden" id="ai-accept" onclick="acceptAI()">Use This in a Post</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   HANNAH CAPPS CONTENT STUDIO
+   Single file app. Data persists to localStorage.
+   ============================================================ */
+
+/* ---------- Brand config ---------- */
+const ACCOUNTS = {
+  '@hannahcappsphoto': { color: '#C8998A', label: 'Photography' },
+  '@hannahcapps_ugc':  { color: '#A8B099', label: 'UGC' }
+};
+
+const PILLARS = [
+  { id: 1, name: 'Phone photography tips',            color: '#F3E7D2' },
+  { id: 2, name: 'Behind the scenes',                 color: '#D9CBBA' },
+  { id: 3, name: 'Wedding / bride education',         color: '#C8998A' },
+  { id: 4, name: 'Personal branding / entrepreneur',  color: '#A68A64' },
+  { id: 5, name: 'Faith, family, heart behind work',  color: '#A8B099' }
+];
+const pillarById = id => PILLARS.find(p => p.id === Number(id)) || PILLARS[0];
+
+const GOALS = ['Build Trust', 'Drive Inquiry', 'Grow Email List'];
+const GOAL_COLOR = { 'Build Trust': '#A8B099', 'Drive Inquiry': '#C8998A', 'Grow Email List': '#A68A64' };
+
+/* ---------- System prompt (Hannah's voice) ---------- */
+const SYSTEM_PROMPT = `You are the content writer for Hannah Capps, a light and airy photographer and UGC creator based in Hot Springs, Arkansas. You write captions and hooks in her exact voice.
+
+BRAND VOICE:
+Warm, conversational, faith-rooted, and personal. You sound like a kind friend talking over coffee, never corporate, never salesy, never hypey. You write the way Hannah actually talks: gentle, encouraging, specific, and honest. Short sentences are good. You let real feeling come through.
+
+ABSOLUTE RULE: Never use an em dash anywhere. Not in captions, hooks, hashtags, or any text you return. Use a period, a comma, or the word "and" instead. This rule is non negotiable.
+
+Also avoid: corporate buzzwords, fake urgency, "link in bio" spam tone, and anything that sounds like an ad. Do not mention paid ads.
+
+HANNAH RUNS TWO ACCOUNTS:
+- @hannahcappsphoto: weddings, families, and personal branding photography.
+- @hannahcapps_ugc: travel, lifestyle, and family user generated content for brand deals.
+
+THE FIVE CONTENT PILLARS:
+1. Phone photography tips: practical, doable tips for taking better photos on a phone.
+2. Behind the scenes: the real process, the gear, the messy middle, the human side of the work.
+3. Wedding and bride education: guidance and reassurance for brides planning their day.
+4. Personal branding and entrepreneur: helping women business owners show up and be seen.
+5. Faith, family, and the heart behind the work: the why, the slow living, the gratitude.
+
+THE THREE AUDIENCE LANES, THEIR PAIN POINTS, AND THEIR CTAs:
+- Brides, funnel "A Year of I Do": they feel overwhelmed planning a wedding and worried about being awkward in photos. CTA invites them to the "A Year of I Do" experience or guide.
+- Moms, funnel "Beauty in the Everyday": they feel like the everyday is slipping by and they are never in the photos. CTA invites them to "Beauty in the Everyday".
+- Women entrepreneurs, funnel "Business Builders": they feel invisible online and unsure how to show up. CTA invites them to "Business Builders".
+If the post does not map to a lane, use N/A.
+
+REVENUE CONNECTION RULE:
+Every single post must serve one of three goals. Always pick the best fit:
+- Build Trust: warmth, value, behind the scenes, story. Builds the know like and trust.
+- Drive Inquiry: gently moves someone toward booking or reaching out.
+- Grow Email List: invites someone onto an email funnel or freebie.
+
+OUTPUT FORMAT:
+Return ONLY valid JSON, no markdown fences, no commentary. Shape:
+{
+  "caption": "full warm conversational caption, multiple short lines allowed, no em dashes",
+  "overlay": "one short punchy on screen hook line",
+  "hooks": { "text": "a scroll stopping written hook", "verbal": "a spoken first line to say out loud", "visual": "a description of the opening visual or b roll" },
+  "hashtags": "25 to 30 relevant hashtags as one space separated string, all lowercase, matched to the pillar and audience, include local Arkansas and Hot Springs tags where it fits",
+  "cta": "one specific call to action sentence matched to the chosen goal and audience lane",
+  "lane": "one of: A Year of I Do | Beauty in the Everyday | Business Builders | N/A"
+}`;
+
+/* ---------- State ---------- */
+let posts = [];
+let goalData = { photo: 0, ugc: 0, email: 0 };
+const GOAL_TARGETS = { photo: 100000, ugc: 50000 };
+let calMode = 'month';
+let calRef = new Date();
+let currentView = 'dashboard';
+
+/* ---------- Persistence ---------- */
+function load() {
+  try { posts = JSON.parse(localStorage.getItem('hc_posts')) || []; } catch(e) { posts = []; }
+  try { goalData = Object.assign(goalData, JSON.parse(localStorage.getItem('hc_goals')) || {}); } catch(e) {}
+}
+function save() { localStorage.setItem('hc_posts', JSON.stringify(posts)); }
+function saveGoals() { localStorage.setItem('hc_goals', JSON.stringify(goalData)); }
+const getKey = () => localStorage.getItem('hc_apikey') || '';
+
+/* ---------- Date helpers ---------- */
+function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+function parseYMD(s) { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+function startOfWeek(d) { const x = new Date(d); x.setDate(x.getDate() - x.getDay()); x.setHours(0,0,0,0); return x; }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate()+n); return x; }
+function sameDay(a, b) { return ymd(a) === ymd(b); }
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmtTime(t) {
+  if (!t) return '';
+  let [h,m] = t.split(':').map(Number); const ap = h >= 12 ? 'pm' : 'am';
+  h = h % 12; if (h === 0) h = 12; return h + (m ? ':'+String(m).padStart(2,'0') : '') + ap;
+}
+function thisWeekPosts() {
+  const s = startOfWeek(new Date()), e = addDays(s, 7);
+  return posts.filter(p => { const d = parseYMD(p.date); return d >= s && d < e; });
+}
+
+/* ---------- Toast ---------- */
+let toastT;
+function toast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ---------- Navigation ---------- */
+const TITLES = {
+  dashboard: ['This Week at a Glance', 'Light, airy, intentional. One post at a time.'],
+  calendar:  ['Content Calendar', 'Drag, drop, and plan your weeks with ease.'],
+  batch:     ['Batch Mode', 'Write a whole batch of clips in one sitting.'],
+  settings:  ['Settings', 'Your key, your data, your studio.']
+};
+function switchView(v) {
+  currentView = v;
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  document.querySelectorAll('.view').forEach(s => s.classList.add('hidden'));
+  document.getElementById('view-' + v).classList.remove('hidden');
+  document.getElementById('pageTitle').textContent = TITLES[v][0];
+  document.getElementById('pageSub').textContent = TITLES[v][1];
+  if (v === 'dashboard') renderDashboard();
+  if (v === 'calendar') renderCalendar();
+}
+document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
+
+/* ---------- Pillar dropdown population ---------- */
+function fillPillarSelect(el) {
+  el.innerHTML = PILLARS.map(p => `<option value="${p.id}">Pillar ${p.id}: ${p.name}</option>`).join('');
+}
+
+/* ============================================================
+   GOAL SIDEBAR
+   ============================================================ */
+function renderGoals() {
+  const photoPct = Math.min(100, Math.round(goalData.photo / GOAL_TARGETS.photo * 100));
+  const ugcPct = Math.min(100, Math.round(goalData.ugc / GOAL_TARGETS.ugc * 100));
+  const money = n => '$' + Number(n||0).toLocaleString();
+  document.getElementById('goalCards').innerHTML = `
+    <div class="goal-card">
+      <div class="gc-top"><span class="gc-name">Photography Bookings</span><span class="gc-val">${money(goalData.photo)} / $100K</span></div>
+      <div class="bar"><span style="width:${photoPct}%"></span></div>
+      <span class="goal-edit" onclick="editGoal('photo')">update amount</span>
+      <div id="edit-photo"></div>
+    </div>
+    <div class="goal-card">
+      <div class="gc-top"><span class="gc-name">UGC Deals + Retainers</span><span class="gc-val">${money(goalData.ugc)} / $50K</span></div>
+      <div class="bar"><span style="width:${ugcPct}%"></span></div>
+      <span class="goal-edit" onclick="editGoal('ugc')">update amount</span>
+      <div id="edit-ugc"></div>
+    </div>
+    <div class="goal-card">
+      <div class="gc-top"><span class="gc-name">Email List</span><span class="gc-val">${Number(goalData.email||0).toLocaleString()} subscribers</span></div>
+      <span class="goal-edit" onclick="editGoal('email')">update weekly count</span>
+      <div id="edit-email"></div>
+    </div>`;
+  renderGoalCounts();
+}
+function editGoal(which) {
+  const host = document.getElementById('edit-' + which);
+  if (host.dataset.open) { host.innerHTML = ''; host.dataset.open = ''; return; }
+  host.dataset.open = '1';
+  const val = goalData[which] || '';
+  host.innerHTML = `<input type="number" id="gi-${which}" value="${val}" placeholder="0" min="0">`;
+  const inp = document.getElementById('gi-' + which);
+  inp.focus();
+  const commit = () => { goalData[which] = Number(inp.value) || 0; saveGoals(); host.dataset.open=''; renderGoals(); };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') commit(); });
+  inp.addEventListener('blur', commit);
+}
+function renderGoalCounts() {
+  const wk = thisWeekPosts();
+  const counts = {}; GOALS.forEach(g => counts[g] = 0);
+  wk.forEach(p => { if (counts[p.cta] != null) counts[p.cta]++; });
+  document.getElementById('goalCounts').innerHTML = GOALS.map(g => `
+    <div class="gcount-row">
+      <span class="pill-dot"><span class="dot" style="background:${GOAL_COLOR[g]}"></span>${g}</span>
+      <b>${counts[g]}</b>
+    </div>`).join('');
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function renderDashboard() {
+  const wk = thisWeekPosts();
+  const sched = wk.filter(p => p.status === 'Scheduled').length;
+  const draft = wk.filter(p => p.status === 'Draft').length;
+  const live = wk.filter(p => p.status === 'Posted').length;
+  document.getElementById('st-sched').textContent = sched;
+  document.getElementById('st-draft').textContent = draft;
+  document.getElementById('st-live').textContent = live;
+  document.getElementById('st-total').textContent = wk.length;
+
+  /* Donut by pillar */
+  const counts = {}; PILLARS.forEach(p => counts[p.id] = 0);
+  wk.forEach(p => counts[p.pillar] = (counts[p.pillar]||0) + 1);
+  const total = wk.length;
+  let acc = 0; const segs = [];
+  PILLARS.forEach(p => {
+    const c = counts[p.id]; if (!c) return;
+    const start = acc / Math.max(total,1) * 360;
+    acc += c; const end = acc / Math.max(total,1) * 360;
+    segs.push(`${p.color} ${start}deg ${end}deg`);
+  });
+  const donut = document.getElementById('donut');
+  donut.style.background = total ? `conic-gradient(${segs.join(',')})` : 'var(--soft-taupe)';
+  document.getElementById('donut-total').textContent = total;
+  document.getElementById('donut-legend').innerHTML = PILLARS.map(p => {
+    const c = counts[p.id]; const pct = total ? Math.round(c/total*100) : 0;
+    return `<div class="legend-row"><span class="dot" style="background:${p.color}"></span> P${p.id} ${p.name} <b>${pct}%</b></div>`;
+  }).join('');
+
+  /* Goal alignment */
+  const gc = {}; GOALS.forEach(g => gc[g]=0); wk.forEach(p => { if (gc[p.cta]!=null) gc[p.cta]++; });
+  document.getElementById('goalAlign').innerHTML = GOALS.map(g => {
+    const pct = total ? Math.round(gc[g]/total*100) : 0;
+    return `<div class="legend-row" style="padding:0.3rem 0;"><span class="dot" style="background:${GOAL_COLOR[g]}"></span> ${g} <b>${gc[g]} post${gc[g]===1?'':'s'}</b></div>`;
+  }).join('');
+
+  /* Upcoming */
+  const today = new Date(); today.setHours(0,0,0,0);
+  const upcoming = posts.filter(p => p.status !== 'Posted' && parseYMD(p.date) >= today)
+    .sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time)).slice(0,3);
+  const up = document.getElementById('upcoming');
+  if (!upcoming.length) {
+    up.innerHTML = `<div class="empty"><span class="ei">&#9788;</span>Nothing on the calendar yet.<br>Create your first post to see it here.</div>`;
+  } else {
+    up.innerHTML = upcoming.map(p => {
+      const d = parseYMD(p.date); const acc = ACCOUNTS[p.account];
+      return `<div class="up-row">
+        <div class="up-date"><div class="d">${d.getDate()}</div><div class="m">${MONTHS[d.getMonth()].slice(0,3)}</div></div>
+        <div class="up-body">
+          <div class="h">${esc(p.hook || p.caption || 'Untitled post')}</div>
+          <div class="meta">
+            <span class="row-flex" style="gap:0.3rem;"><span class="pc-acc" style="background:${acc.color}"></span>${p.account}</span>
+            <span>&middot; ${fmtTime(p.time)}</span>
+            <span class="badge ${p.status.toLowerCase()}">${p.status}</span>
+          </div>
+        </div>
+        <button class="btn btn-soft sm" onclick="openPost('${p.id}')">Edit</button>
+      </div>`;
+    }).join('');
+  }
+}
+
+/* ============================================================
+   CALENDAR
+   ============================================================ */
+function setCalMode(m) {
+  calMode = m;
+  document.getElementById('seg-week').classList.toggle('active', m==='week');
+  document.getElementById('seg-month').classList.toggle('active', m==='month');
+  renderCalendar();
+}
+function calStep(n) {
+  if (calMode === 'week') calRef = addDays(calRef, 7*n);
+  else calRef = new Date(calRef.getFullYear(), calRef.getMonth()+n, 1);
+  renderCalendar();
+}
+function calToday() { calRef = new Date(); renderCalendar(); }
+
+function renderCalendar() {
+  const grid = document.getElementById('calGrid');
+  const title = document.getElementById('calTitle');
+  const today = new Date();
+  let cells = [];
+  if (calMode === 'week') {
+    grid.className = 'cal-grid week-grid';
+    const start = startOfWeek(calRef);
+    title.textContent = `Week of ${MONTHS[start.getMonth()]} ${start.getDate()}`;
+    for (let i=0;i<7;i++) cells.push({ date: addDays(start,i), muted:false });
+  } else {
+    grid.className = 'cal-grid';
+    const first = new Date(calRef.getFullYear(), calRef.getMonth(), 1);
+    title.textContent = `${MONTHS[calRef.getMonth()]} ${calRef.getFullYear()}`;
+    const gridStart = startOfWeek(first);
+    const last = new Date(calRef.getFullYear(), calRef.getMonth()+1, 0);
+    const totalCells = Math.ceil((last.getDate() + first.getDay()) / 7) * 7;
+    for (let i=0;i<totalCells;i++) {
+      const d = addDays(gridStart, i);
+      cells.push({ date: d, muted: d.getMonth() !== calRef.getMonth() });
+    }
+  }
+  let html = DOW.map(d => `<div class="cal-head">${d}</div>`).join('');
+  cells.forEach(c => {
+    const key = ymd(c.date);
+    const dayPosts = posts.filter(p => p.date === key).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+    const isToday = sameDay(c.date, today);
+    html += `<div class="cal-cell ${c.muted?'muted':''} ${isToday?'today':''}" data-date="${key}"
+      ondragover="calDragOver(event)" ondragleave="calDragLeave(event)" ondrop="calDrop(event)">
+      <div class="cnum"><span>${c.date.getDate()}</span><button class="cadd" onclick="openPost(null,'${key}')" title="Add post">&#43;</button></div>
+      ${dayPosts.map(p => postChip(p)).join('')}
+    </div>`;
+  });
+  grid.innerHTML = html;
+}
+function postChip(p) {
+  const acc = ACCOUNTS[p.account]; const pil = pillarById(p.pillar);
+  return `<div class="post-chip" draggable="true" data-id="${p.id}"
+      style="border-left-color:${pil.color}; background:${pil.color}22;"
+      ondragstart="chipDragStart(event)" ondragend="chipDragEnd(event)" onclick="openPost('${p.id}')">
+    <div class="pc-time"><span>${fmtTime(p.time)}</span><span class="pc-acc" style="background:${acc.color}"></span></div>
+    <div class="pc-hook">${esc(p.hook || p.caption || 'Untitled')}</div>
+    <div class="pc-foot"><span class="mini-badge badge ${p.status.toLowerCase()}">${p.status}</span></div>
+  </div>`;
+}
+let dragId = null;
+function chipDragStart(e) { dragId = e.target.dataset.id; e.target.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; e.stopPropagation(); }
+function chipDragEnd(e) { e.target.classList.remove('dragging'); }
+function calDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drop-hover'); }
+function calDragLeave(e) { e.currentTarget.classList.remove('drop-hover'); }
+function calDrop(e) {
+  e.preventDefault(); e.currentTarget.classList.remove('drop-hover');
+  const newDate = e.currentTarget.dataset.date;
+  const p = posts.find(x => x.id === dragId);
+  if (p && newDate && p.date !== newDate) { p.date = newDate; save(); renderCalendar(); renderGoals(); toast('Post rescheduled'); }
+  dragId = null;
+}
+
+/* ============================================================
+   POST MODAL
+   ============================================================ */
+function openPost(id, presetDate) {
+  fillPillarSelect(document.getElementById('f-pillar'));
+  const o = document.getElementById('postOverlay');
+  const del = document.getElementById('deleteBtn');
+  if (id) {
+    const p = posts.find(x => x.id === id); if (!p) return;
+    document.getElementById('postModalTitle').textContent = 'Edit Post';
+    document.getElementById('f-id').value = p.id;
+    document.getElementById('f-account').value = p.account;
+    document.getElementById('f-pillar').value = p.pillar;
+    document.getElementById('f-platform').value = p.platform;
+    document.getElementById('f-cta').value = p.cta;
+    document.getElementById('f-hook').value = p.hook || '';
+    document.getElementById('f-caption').value = p.caption || '';
+    document.getElementById('f-hashtags').value = p.hashtags || '';
+    document.getElementById('f-lane').value = p.lane || 'N/A';
+    document.getElementById('f-status').value = p.status;
+    document.getElementById('f-date').value = p.date;
+    document.getElementById('f-time').value = p.time || '09:00';
+    document.getElementById('f-notes').value = p.notes || '';
+    del.style.display = '';
+  } else {
+    document.getElementById('postModalTitle').textContent = 'New Post';
+    ['f-id','f-hook','f-caption','f-hashtags','f-notes'].forEach(i => document.getElementById(i).value='');
+    document.getElementById('f-account').value = '@hannahcappsphoto';
+    document.getElementById('f-pillar').value = 1;
+    document.getElementById('f-platform').value = 'Instagram Reel';
+    document.getElementById('f-cta').value = 'Build Trust';
+    document.getElementById('f-lane').value = 'N/A';
+    document.getElementById('f-status').value = 'Draft';
+    document.getElementById('f-date').value = presetDate || ymd(new Date());
+    document.getElementById('f-time').value = '09:00';
+    del.style.display = 'none';
+  }
+  updateCounts();
+  o.classList.remove('hidden');
+}
+function closePost() { document.getElementById('postOverlay').classList.add('hidden'); }
+function savePost() {
+  const id = document.getElementById('f-id').value;
+  const data = {
+    account: document.getElementById('f-account').value,
+    pillar: Number(document.getElementById('f-pillar').value),
+    platform: document.getElementById('f-platform').value,
+    cta: document.getElementById('f-cta').value,
+    hook: document.getElementById('f-hook').value.trim(),
+    caption: document.getElementById('f-caption').value.trim(),
+    hashtags: document.getElementById('f-hashtags').value.trim(),
+    lane: document.getElementById('f-lane').value,
+    status: document.getElementById('f-status').value,
+    date: document.getElementById('f-date').value || ymd(new Date()),
+    time: document.getElementById('f-time').value || '09:00',
+    notes: document.getElementById('f-notes').value.trim()
+  };
+  if (id) { Object.assign(posts.find(x => x.id === id), data); toast('Post updated'); }
+  else { data.id = 'p' + Date.now() + Math.floor(Math.random()*999); posts.push(data); toast('Post created'); }
+  save(); closePost(); refreshAll();
+}
+function deletePost() {
+  const id = document.getElementById('f-id').value;
+  posts = posts.filter(x => x.id !== id); save(); closePost(); refreshAll(); toast('Post deleted');
+}
+function updateCounts() {
+  const cap = document.getElementById('f-caption').value;
+  const hasEmDash = cap.indexOf(String.fromCharCode(8212)) !== -1;
+  document.getElementById('capCount').textContent = cap.length + ' characters' + (hasEmDash ? '  · remove the em dash' : '');
+  const tags = (document.getElementById('f-hashtags').value.match(/#[\w]+/g) || []).length;
+  document.getElementById('hashCount').textContent = tags + ' hashtags' + (tags && (tags<25||tags>30) ? '  · aim for 25 to 30' : '');
+}
+document.getElementById('f-caption').addEventListener('input', updateCounts);
+document.getElementById('f-hashtags').addEventListener('input', updateCounts);
+
+/* ============================================================
+   CLAUDE API
+   ============================================================ */
+async function callClaude(userPrompt, maxTokens) {
+  const key = getKey();
+  if (!key) { throw new Error('NO_KEY'); }
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: maxTokens || 1600,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: userPrompt }]
+    })
+  });
+  if (!res.ok) {
+    let msg = 'API error ' + res.status;
+    try { const j = await res.json(); if (j.error && j.error.message) msg = j.error.message; } catch(e) {}
+    throw new Error(msg);
+  }
+  const data = await res.json();
+  return data.content.map(b => b.text || '').join('');
+}
+function extractJSON(text) {
+  let t = text.trim().replace(/^```(json)?/i,'').replace(/```$/,'').trim();
+  const s = t.indexOf('{'), e = t.lastIndexOf('}');
+  if (s !== -1 && e !== -1) t = t.slice(s, e+1);
+  return JSON.parse(t);
+}
+
+/* ============================================================
+   AI CAPTION GENERATOR
+   ============================================================ */
+let lastAI = null;
+let aiTargetPost = false;
+function openAI(forPost) {
+  aiTargetPost = !!forPost;
+  fillPillarSelect(document.getElementById('ai-pillar'));
+  if (forPost) {
+    document.getElementById('ai-account').value = document.getElementById('f-account').value;
+    document.getElementById('ai-pillar').value = document.getElementById('f-pillar').value;
+    document.getElementById('ai-platform').value = document.getElementById('f-platform').value;
+    document.getElementById('ai-cta').value = document.getElementById('f-cta').value;
+  }
+  document.getElementById('ai-output').innerHTML = '';
+  document.getElementById('ai-accept').classList.add('hidden');
+  document.getElementById('ai-hint').textContent = getKey() ? '' : 'Add your Claude API key in Settings first.';
+  lastAI = null;
+  document.getElementById('aiOverlay').classList.remove('hidden');
+}
+function closeAI() { document.getElementById('aiOverlay').classList.add('hidden'); }
+
+async function runAI() {
+  const input = document.getElementById('ai-input').value.trim();
+  if (!input) { toast('Tell it what you filmed first'); return; }
+  const account = document.getElementById('ai-account').value;
+  const pillar = pillarById(document.getElementById('ai-pillar').value);
+  const platform = document.getElementById('ai-platform').value;
+  const cta = document.getElementById('ai-cta').value;
+  const btn = document.getElementById('ai-go');
+  const out = document.getElementById('ai-output');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Writing...';
+  out.innerHTML = '';
+  const prompt = `Write one full caption set for this post.
+Account: ${account}
+Content pillar: Pillar ${pillar.id} - ${pillar.name}
+Platform: ${platform}
+Goal for this post: ${cta}
+What was filmed / topic: ${input}
+
+Return only the JSON object described in your instructions.`;
+  try {
+    const raw = await callClaude(prompt, 1600);
+    const j = extractJSON(raw);
+    lastAI = j;
+    out.innerHTML = renderAIOutput(j);
+    document.getElementById('ai-accept').classList.remove('hidden');
+  } catch (err) {
+    out.innerHTML = aiError(err);
+  } finally {
+    btn.disabled = false; btn.innerHTML = '&#10024; Generate';
+  }
+}
+function renderAIOutput(j) {
+  const h = j.hooks || {};
+  return `<div class="ai-out">
+    <div class="ai-block"><div class="albl">Caption</div><div class="aval">${esc(j.caption||'')}</div></div>
+    <div class="ai-block"><div class="albl">Overlay Text</div><div class="aval">${esc(j.overlay||'')}</div></div>
+    <div class="ai-block"><div class="albl">3 Hook Variations</div>
+      <div class="hookline"><b>Text</b>${esc(h.text||'')}</div>
+      <div class="hookline"><b>Verbal</b>${esc(h.verbal||'')}</div>
+      <div class="hookline"><b>Visual</b>${esc(h.visual||'')}</div>
+    </div>
+    <div class="ai-block"><div class="albl">Hashtags (${(String(j.hashtags||'').match(/#[\w]+/g)||[]).length})</div><div class="aval hashes">${esc(j.hashtags||'')}</div></div>
+    <div class="ai-block"><div class="albl">Suggested CTA &middot; Lane: ${esc(j.lane||'N/A')}</div><div class="aval">${esc(j.cta||'')}</div></div>
+  </div>`;
+}
+function aiError(err) {
+  if (err.message === 'NO_KEY') return `<div class="note">Add your Claude API key in Settings to generate. It stays in this browser.</div>`;
+  return `<div class="note">Could not generate: ${esc(err.message)}<br>If this is a CORS or key issue, double check the key in Settings.</div>`;
+}
+function acceptAI() {
+  if (!lastAI) return;
+  const account = document.getElementById('ai-account').value;
+  const pillar = Number(document.getElementById('ai-pillar').value);
+  const platform = document.getElementById('ai-platform').value;
+  const cta = document.getElementById('ai-cta').value;
+  const h = lastAI.hooks || {};
+  if (aiTargetPost) {
+    // fill the open post modal
+    document.getElementById('f-account').value = account;
+    document.getElementById('f-pillar').value = pillar;
+    document.getElementById('f-platform').value = platform;
+    document.getElementById('f-cta').value = cta;
+  } else {
+    openPost();
+    document.getElementById('f-account').value = account;
+    document.getElementById('f-pillar').value = pillar;
+    document.getElementById('f-platform').value = platform;
+    document.getElementById('f-cta').value = cta;
+  }
+  document.getElementById('f-hook').value = lastAI.overlay || h.text || '';
+  document.getElementById('f-caption').value = lastAI.caption || '';
+  document.getElementById('f-hashtags').value = lastAI.hashtags || '';
+  document.getElementById('f-lane').value = lanePick(lastAI.lane);
+  document.getElementById('f-notes').value = (h.verbal||h.visual) ? ('Verbal hook: ' + (h.verbal||'') + '\nVisual hook: ' + (h.visual||'')) : '';
+  updateCounts();
+  closeAI();
+  toast('Dropped into your post');
+}
+function lanePick(l) {
+  const opts = ['A Year of I Do','Beauty in the Everyday','Business Builders','N/A'];
+  return opts.includes(l) ? l : 'N/A';
+}
+
+/* ============================================================
+   BATCH MODE
+   ============================================================ */
+let batchData = [];
+async function runBatch() {
+  const lines = document.getElementById('batch-input').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!lines.length) { toast('Add a few clips first'); return; }
+  const account = document.getElementById('batch-account').value;
+  const platform = document.getElementById('batch-platform').value;
+  const btn = document.getElementById('batch-go');
+  const out = document.getElementById('batch-results');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Writing batch...';
+  out.innerHTML = `<div class="empty"><span class="spinner"></span><br>Writing ${lines.length} caption sets in Hannah's voice...</div>`;
+  const prompt = `Write a full caption set for EACH of these ${lines.length} clips for the account ${account} on ${platform}.
+For each clip, choose the most fitting content pillar (1 to 5), the best goal (Build Trust, Drive Inquiry, or Grow Email List), and a suggested post day of the week.
+Clips:
+${lines.map((l,i) => (i+1) + '. ' + l).join('\n')}
+
+Return ONLY a JSON array. Each element shape:
+{ "clip": "the original clip description", "pillar": 1, "caption": "...", "overlay": "...", "hooks": {"text":"...","verbal":"...","visual":"..."}, "hashtags": "...", "cta": "...", "lane": "...", "goal": "Build Trust|Drive Inquiry|Grow Email List", "day": "suggested day of week" }
+No markdown fences, no commentary, no em dashes.`;
+  try {
+    const raw = await callClaude(prompt, 4000);
+    let t = raw.trim().replace(/^```(json)?/i,'').replace(/```$/,'').trim();
+    const s = t.indexOf('['), e = t.lastIndexOf(']');
+    if (s!==-1 && e!==-1) t = t.slice(s, e+1);
+    batchData = JSON.parse(t);
+    batchData.forEach(b => { b._account = account; b._platform = platform; });
+    renderBatch();
+    toast('Batch ready');
+  } catch (err) {
+    out.innerHTML = aiError(err);
+  } finally {
+    btn.disabled = false; btn.innerHTML = '&#10024; Generate Batch';
+  }
+}
+function renderBatch() {
+  const out = document.getElementById('batch-results');
+  if (!batchData.length) { out.innerHTML=''; return; }
+  let html = `<div class="row-flex" style="margin-bottom:1rem;">
+    <h3 style="font-family:'Bodoni Moda',serif;font-size:1.2rem;">${batchData.length} clips ready</h3>
+    <span class="grow"></span>
+    <button class="btn btn-primary" onclick="pushBatch()">&#43; Push all to calendar as drafts</button>
+  </div>`;
+  batchData.forEach((b, i) => {
+    const pil = pillarById(b.pillar); const h = b.hooks || {};
+    html += `<div class="batch-clip">
+      <div class="bc-head">
+        <span class="bc-num">Clip ${i+1}</span>
+        <span class="row-flex" style="gap:0.4rem;">
+          <span class="chip" style="background:${pil.color}33;border-color:${pil.color}">P${pil.id} ${pil.name}</span>
+          <span class="chip" style="background:${GOAL_COLOR[b.goal]||'#eee'}33">${esc(b.goal||'')}</span>
+          <span class="chip">${esc(b.day||'')}</span>
+        </span>
+      </div>
+      <div class="ai-block"><div class="albl">Clip</div><div class="aval" style="color:var(--espresso)">${esc(b.clip||'')}</div></div>
+      <div class="ai-block"><div class="albl">Caption</div><div class="aval">${esc(b.caption||'')}</div></div>
+      <div class="ai-block"><div class="albl">Overlay Text</div><div class="aval">${esc(b.overlay||'')}</div></div>
+      <div class="ai-block"><div class="albl">Hooks</div>
+        <div class="hookline"><b>Text</b>${esc(h.text||'')}</div>
+        <div class="hookline"><b>Verbal</b>${esc(h.verbal||'')}</div>
+        <div class="hookline"><b>Visual</b>${esc(h.visual||'')}</div>
+      </div>
+      <div class="ai-block"><div class="albl">Hashtags</div><div class="aval hashes">${esc(b.hashtags||'')}</div></div>
+      <div class="ai-block"><div class="albl">CTA &middot; Lane: ${esc(b.lane||'N/A')}</div><div class="aval">${esc(b.cta||'')}</div></div>
+    </div>`;
+  });
+  out.innerHTML = html;
+}
+const DAYMAP = { sunday:0, monday:1, tuesday:2, wednesday:3, thursday:4, friday:5, saturday:6 };
+function nextDayDate(dayName, offset) {
+  const base = startOfWeek(new Date());
+  let idx = null;
+  if (dayName) { const k = String(dayName).toLowerCase().trim(); for (const d in DAYMAP) if (k.includes(d)) idx = DAYMAP[d]; }
+  if (idx === null) idx = (offset % 7);
+  let target = addDays(base, idx);
+  if (target < new Date().setHours(0,0,0,0)) target = addDays(target, 7);
+  return ymd(target);
+}
+function pushBatch() {
+  if (!batchData.length) return;
+  batchData.forEach((b, i) => {
+    const h = b.hooks || {};
+    posts.push({
+      id: 'p' + Date.now() + i + Math.floor(Math.random()*999),
+      account: b._account || '@hannahcappsphoto',
+      pillar: Number(b.pillar) || 1,
+      platform: b._platform || 'Instagram Reel',
+      cta: GOALS.includes(b.goal) ? b.goal : 'Build Trust',
+      hook: b.overlay || h.text || '',
+      caption: b.caption || '',
+      hashtags: b.hashtags || '',
+      lane: lanePick(b.lane),
+      status: 'Draft',
+      date: nextDayDate(b.day, i),
+      time: '09:00',
+      notes: (h.verbal||h.visual) ? ('Verbal hook: ' + (h.verbal||'') + '\nVisual hook: ' + (h.visual||'')) : ''
+    });
+  });
+  save();
+  const n = batchData.length;
+  batchData = []; renderBatch();
+  document.getElementById('batch-input').value = '';
+  refreshAll();
+  toast(n + ' drafts added to your calendar');
+  switchView('calendar');
+}
+
+/* ============================================================
+   CSV EXPORT
+   ============================================================ */
+function exportCSV() {
+  if (!posts.length) { toast('No posts to export yet'); return; }
+  const cols = ['date','time','account','platform','pillar','status','cta','lane','hook','caption','hashtags','notes'];
+  const head = ['Date','Time','Account','Platform','Pillar','Status','CTA / Goal','Audience Lane','Hook / Overlay','Caption','Hashtags','Notes'];
+  const rows = posts.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).map(p =>
+    cols.map(c => {
+      let v = c === 'pillar' ? ('Pillar ' + p.pillar + ': ' + pillarById(p.pillar).name) : (p[c] == null ? '' : p[c]);
+      return '"' + String(v).replace(/"/g,'""') + '"';
+    }).join(',')
+  );
+  const csv = head.map(h=>'"'+h+'"').join(',') + '\n' + rows.join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hannah-capps-content-' + ymd(new Date()) + '.csv';
+  a.click();
+  toast('CSV exported for your VA');
+}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+function saveKey() {
+  const v = document.getElementById('apiKeyInput').value.trim();
+  if (v) { localStorage.setItem('hc_apikey', v); toast('API key saved'); }
+  else { localStorage.removeItem('hc_apikey'); toast('API key cleared'); }
+  showKeyStatus();
+}
+function toggleKey() {
+  const i = document.getElementById('apiKeyInput');
+  i.type = i.type === 'password' ? 'text' : 'password';
+}
+function showKeyStatus() {
+  const k = getKey();
+  document.getElementById('keyStatus').innerHTML = k
+    ? 'Key saved. Ending in <b>' + esc(k.slice(-4)) + '</b>. Ready to generate.'
+    : 'No key saved yet. The caption studio and batch mode need one.';
+}
+function clearAll() {
+  if (!confirm('Clear all posts and goals from this browser? This cannot be undone.')) return;
+  posts = []; goalData = { photo:0, ugc:0, email:0 };
+  save(); saveGoals(); refreshAll(); toast('All data cleared');
+}
+
+/* ============================================================
+   SAMPLE DATA
+   ============================================================ */
+function seedSample() {
+  const mon = startOfWeek(new Date()); mon.setDate(mon.getDate()+1);
+  const mk = (off,h,m,acc,pil,plat,cta,lane,hook,cap,status) => ({
+    id:'p'+Date.now()+Math.floor(Math.random()*99999)+off,
+    account:acc, pillar:pil, platform:plat, cta:cta, lane:lane,
+    hook:hook, caption:cap, hashtags:'', status:status,
+    date:ymd(addDays(mon,off)), time:m, notes:''
+  });
+  posts = posts.concat([
+    mk(0,'','09:00','@hannahcappsphoto',1,'Instagram Reel','Build Trust','N/A','One little trick for softer phone photos','Pull your subject toward a window and turn off your flash. That soft light does all the work for you.','Scheduled'),
+    mk(1,'','11:30','@hannahcappsphoto',3,'Instagram Reel','Drive Inquiry','A Year of I Do','The part of your wedding day nobody warns you about','Brides, the morning goes so fast. Here is how we slow it down and actually capture it.','Scheduled'),
+    mk(2,'','08:00','@hannahcapps_ugc',2,'TikTok','Build Trust','N/A','Packing my bag for a family session','Come behind the scenes with me. The real, slightly chaotic version.','Draft'),
+    mk(3,'','10:00','@hannahcapps_ugc',4,'Instagram Reel','Grow Email List','Business Builders','You do not need to be on camera all day to be seen','For the women building something quietly. Here is where to start.','Scheduled'),
+    mk(4,'','19:00','@hannahcappsphoto',5,'Instagram Story','Build Trust','N/A','The heart behind why I do this','A little reminder of why I picked up a camera in the first place.','Draft'),
+    mk(5,'','12:00','@hannahcapps_ugc',1,'Pinterest','Grow Email List','Beauty in the Everyday','Phone photo tips for moms','Moms, you deserve to be in the photos too. Save these for your next everyday moment.','Posted')
+  ]);
+  if (!goalData.photo) goalData = { photo: 34000, ugc: 12500, email: 480 };
+  save(); saveGoals(); refreshAll(); toast('Sample week loaded');
+}
+
+/* ============================================================
+   UTIL + INIT
+   ============================================================ */
+function esc(s) { return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function refreshAll() {
+  renderGoals();
+  if (currentView === 'dashboard') renderDashboard();
+  if (currentView === 'calendar') renderCalendar();
+}
+function init() {
+  load();
+  fillPillarSelect(document.getElementById('f-pillar'));
+  fillPillarSelect(document.getElementById('ai-pillar'));
+  document.getElementById('apiKeyInput').value = getKey();
+  showKeyStatus();
+  renderGoals();
+  renderDashboard();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closePost(); closeAI(); }
+  });
+  // close overlays on backdrop click
+  ['postOverlay','aiOverlay'].forEach(id => {
+    document.getElementById(id).addEventListener('mousedown', e => { if (e.target.id === id) e.currentTarget.classList.add('hidden'); });
+  });
+}
+init();
+</script>
+</body>
+</html>
